@@ -15,11 +15,11 @@ class Neural_Network():
                     self.layers[i].neurons[j].linear_combination(self.layers[i - 1])
                 self.layers[i].activate_output()
 
-    def back_propagation(self, training_data):
+    def back_propagation(self, labels):
         for i in reversed(range(len(self.layers))):
             if i == len(self.layers) - 1:
                 for j in range(len(self.layers[i].neurons)):
-                    self.layers[i].neurons[j].gradient = self.layers[i].neurons[j].output - training_data[j]
+                    self.layers[i].neurons[j].gradient = self.layers[i].neurons[j].output - labels[j]
             elif i != 0 and i != len(self.layers) - 1:
                 self.layers[i].derivative_of_activation_function()
             elif i == 0:
